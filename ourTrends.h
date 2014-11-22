@@ -1,5 +1,5 @@
 #include "Trends.h"
-
+#include <unordered_map>
 #include <vector>
 
 class naiveTrends : public Trends {
