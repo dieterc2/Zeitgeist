@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <vector>
 
-class naiveTrends : public Trends {
+class ourTrends : public Trends {
 public:
 	virtual void increaseCount(std::string s, unsigned int amount);
 	virtual unsigned int getCount(std::string s);
