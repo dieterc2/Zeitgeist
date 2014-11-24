@@ -55,6 +55,20 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
+double useCase_badCaseForNaive(){
+	Trends* tr = new naiveTrends();
+	std::vector<std::string> wordlist = getWordList("data/28885.txt");
+	double start = getTimeInMillis();
+	for (unsigned int i = 0; i<wordlist.size(); i++){
+		tr->increaseCount(wordlist[i], 1);
+	}
+	double end = getTimeInMillis();
+	std::cout << "increaseCount time: " << (end - start) / wordlist.size() << " ms per word" << std::endl;
+
+
+
+}
+
 /*
  * The only purpose of main() is to call processFile with increasingingly larger and larger
  * files. A larger file will give a more accurate sense of how fast addToTrends is, but at some
