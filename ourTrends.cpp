@@ -1,6 +1,5 @@
 #include "ourTrends.h"
 
-
 void ourTrends::increaseCount(std::string s, unsigned int amount){
 	// check to see if key is already in
 	if(wordStoreTable->find(s) == wordStoreTable->end()){
