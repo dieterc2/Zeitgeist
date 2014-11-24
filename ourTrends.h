@@ -1,4 +1,5 @@
 #include "Trends.h"
+
 #include <unordered_map>
 #include <vector>
 

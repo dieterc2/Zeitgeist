@@ -14,7 +14,7 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 }
 
 unsigned int ourTrends::getCount(std::string s){
-	unsigned int x = 0;
+	unsigned int x = wordStoreTable->find(s)->second;
 	return x;
 }
 
