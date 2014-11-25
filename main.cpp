@@ -55,6 +55,17 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
+
+
+
+
+
+
+
+
+//Use Case for naiveTrends
+
+
 double useCase_badCaseForNaive(){
 	Trends* tr = new naiveTrends();
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
@@ -65,9 +76,35 @@ double useCase_badCaseForNaive(){
 	double end = getTimeInMillis();
 	std::cout << "increaseCount time: " << (end - start) / wordlist.size() << " ms per word" << std::endl;
 
+	std::string outfname = "data/28885.txt.out";
+	std::ofstream out(outfname.c_str());
 
 
+	start = getTimeInMillis();
+	for (unsigned int i = 0; i< tr->numEntries(); i++){
+		std::string s = tr->getNthPopular(i);
+		out << tr->getCount(s) << ": " << s << std::endl;
+	}
+
+	out.close();
+	end = getTimeInMillis();
+	std::cout << "getNth followed by getCount, time: " << (end - start) / tr->numEntries() << " ms per entry" << std::endl;
+
+	delete tr;
+
+	return end - start;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  * The only purpose of main() is to call processFile with increasingingly larger and larger
