@@ -26,11 +26,11 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 		std::pair<std::string, int> p1 (s, x + amount);
 		sortedVector.erase(wordStoreTable.find(s)->second);
 		sortedVector.push_back(p1);
-		
+		std::swap(sortedVector.begin(), sortedVector.end());
 		std::vector<std::pair<std::string, int>>::iterator it = sortedVector.begin();
 
 		wordStoreTable.find(s)->second = it;
-		
+		std::cout << wordStoreTable.find(s)->first << std::endl;
 
 	}
 }
@@ -57,5 +57,5 @@ std::string ourTrends::getNthPopular(unsigned int n){
 
 unsigned int ourTrends::numEntries() {
 	int x = sortedVector.size();
-	return wordStoreTable.size();
+	return x;
 }
