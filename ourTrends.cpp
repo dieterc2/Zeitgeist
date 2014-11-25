@@ -8,41 +8,31 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 	// check to see if key is already in
 	if(wordStoreTable.find(s) == wordStoreTable.end()){
 		// add the element into the hash table
-		std::vector<std::pair<std::string, int>>::iterator it;
-		std::pair<std::string, std::vector<std::pair<std::string, int>>::iterator> word (s, it);
+		
+		std::pair<std::string, int> word (s, count);
 		wordStoreTable.insert(word);
 
 		// add element to back of vector
 		std::pair<std::string, int> p1 (s, amount);
-		sortedVector.push_back(p1);
-		std::swap(sortedVector.front(), sortedVector.back());
+		sortedArray[count] = p1;
+
 		// set the iterator of the hash pair to the end of the current vector size
-		it = sortedVector.begin();
-		wordStoreTable.find(s)->second = it;
 		isSorted = false;
+		count++;
 		
 	} else{
-		int x = wordStoreTable.find(s)->second->second;
-		std::pair<std::string, int> p1 (s, x + amount);
-		sortedVector.erase(wordStoreTable.find(s)->second);
-		sortedVector.push_back(p1);
-		std::swap(sortedVector.begin(), sortedVector.end());
-		std::vector<std::pair<std::string, int>>::iterator it = sortedVector.begin();
-
-		wordStoreTable.find(s)->second = it;
-		std::cout << wordStoreTable.find(s)->first << std::endl;
-
+		int y = wordStoreTable.find(s)->second;
+		sortedArray[y].second++;
 	}
 }
 
 unsigned int ourTrends::getCount(std::string s){
-	std::vector<std::pair<std::string, int>>::iterator it = wordStoreTable.find(s)->second;
-	return it->second;
+	return 0;
 	
 }
 
 std::string ourTrends::getNthPopular(unsigned int n){
-	if (!isSorted){
+	/*if (!isSorted){
 		std::sort(sortedVector.begin(), sortedVector.end(), compareFunc);
 		isSorted = true;
 	}
@@ -52,10 +42,10 @@ std::string ourTrends::getNthPopular(unsigned int n){
 	}
 
 	//If they give bad input, return empty string.
-	return "";
+	return "";*/
+	return "end";
 }
 
 unsigned int ourTrends::numEntries() {
-	int x = sortedVector.size();
-	return x;
+	return wordStoreTable.size();
 }
