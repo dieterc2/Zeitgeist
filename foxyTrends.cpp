@@ -1,10 +1,10 @@
-#include "ourTrends.h"
+#include "foxyTrends.h"
 #include <algorithm>
 #include <iostream>
 
 bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, unsigned int> j);
 
-void ourTrends::increaseCount(std::string s, unsigned int amount){
+void foxyTrends::increaseCount(std::string s, unsigned int amount){
 	// check to see if key is already in
 	if(wordStoreTable.find(s) == wordStoreTable.end()){
 		// add the element into the hash table mapped to array
@@ -31,12 +31,12 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 	}
 }
 
-unsigned int ourTrends::getCount(std::string s){
+unsigned int foxyTrends::getCount(std::string s){
 	return countStoreTable.find(s)->second;
 	
 }
 
-std::string ourTrends::getNthPopular(unsigned int n){
+std::string foxyTrends::getNthPopular(unsigned int n){
 	if (!isSorted){
 		std::sort(sortedArray.begin(), sortedArray.end(), compareFunc);
 		isSorted = true;
@@ -51,6 +51,6 @@ std::string ourTrends::getNthPopular(unsigned int n){
 	return "end";
 }
 
-unsigned int ourTrends::numEntries() {
+unsigned int foxyTrends::numEntries() {
 	return wordStoreTable.size();
 }

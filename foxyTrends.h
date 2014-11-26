@@ -3,9 +3,9 @@
 #include <unordered_map>
 #include <array>
 
-class ourTrends : public Trends {
+class foxyTrends : public Trends {
 public:
-	ourTrends() {isSorted = true; count = 0;}
+	foxyTrends() {isSorted = true; count = 0;}
 	virtual void increaseCount(std::string s, unsigned int amount);
 	virtual unsigned int getCount(std::string s);
 	virtual std::string getNthPopular(unsigned int n);
