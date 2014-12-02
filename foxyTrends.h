@@ -10,6 +10,7 @@ public:
 	virtual unsigned int getCount(std::string s);
 	virtual std::string getNthPopular(unsigned int n);
 	virtual unsigned int numEntries();
+	virtual void resetIndices();
 
 protected:
 	std::unordered_map<std::string, int> wordStoreTable;

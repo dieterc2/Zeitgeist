@@ -37,9 +37,11 @@ unsigned int foxyTrends::getCount(std::string s){
 }
 
 std::string foxyTrends::getNthPopular(unsigned int n){
+
 	if (!isSorted){
 		std::sort(sortedArray.begin(), sortedArray.end(), compareFunc);
 		isSorted = true;
+		resetIndices();
 	}
 
 	if (n <= numEntries()){
@@ -52,5 +54,17 @@ std::string foxyTrends::getNthPopular(unsigned int n){
 }
 
 unsigned int foxyTrends::numEntries() {
+	int x = sortedArray.size();
 	return wordStoreTable.size();
+}
+
+// This helper method resets the indexes of the hash table that
+// contains indexes of the words after the array has been sorted.
+// Takes 0(n) time :(
+void foxyTrends::resetIndices(){
+	for(unsigned int i = 0; i < numEntries(); i++){
+		int newIndex = i;
+		std::string x = sortedArray[i].first;
+		wordStoreTable.find(x)->second;
+	}
 }
