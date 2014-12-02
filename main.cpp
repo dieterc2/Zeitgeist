@@ -38,7 +38,7 @@ double useCase_addAllThenGetInOrder(){
 
 	//Now we will print out the complete results. This could be REALLY clow, if
 	// your getNthPopular is not a little bit smart.
-	std::string outfname = "data/28885.txt.out";
+	std::string outfname = "data/288851.txt.out";
 	std::ofstream out(outfname.c_str());
 
 	start = getTimeInMillis();
@@ -55,37 +55,38 @@ double useCase_addAllThenGetInOrder(){
 	return end - start;
 }
 
+//Use case for smarterTrends
+double useCase_SmarterTrends(){
+	Trends* tr = new smarterTrends(); //You will need to change this to match your own class!
 
-
-
-
-
-
-
-
-//Use Case for naiveTrends
-
-
-double useCase_badCaseForNaive(){
-	Trends* tr = new naiveTrends();
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
-	double start = getTimeInMillis();
-	for (unsigned int i = 0; i<wordlist.size(); i++){
-		tr->increaseCount(wordlist[i], 1);
-	}
-	double end = getTimeInMillis();
-	std::cout << "increaseCount time: " << (end - start) / wordlist.size() << " ms per word" << std::endl;
+	std::vector<std::string> wordlist2 = getWordList("data/4300.txt");
 
+	//We only want to time how long addToTrends takes, so we get
+	// the starting time, which is the clock time, in milliseconds
+	double start = getTimeInMillis();
+	//Now add all the words to the Trends data structure
+	for(unsigned int i=0; i<wordlist.size(); i++){
+		tr->increaseCount(wordlist[i],1);
+	}
+	for(unsigned int i=0; i<wordlist.size(); i++){
+		tr->increaseCount(wordlist[i],1);
+	}
+	//Now get the end time
+	double end = getTimeInMillis();
+	std::cout << "increaseCount time: " << (end-start)/wordlist.size() << " ms per word" << std::endl;
+
+	//Now we will print out the complete results. This could be REALLY clow, if
+	// your getNthPopular is not a little bit smart.
 	std::string outfname = "data/28885.txt.out";
 	std::ofstream out(outfname.c_str());
 
-
 	start = getTimeInMillis();
-	for (unsigned int i = 0; i< tr->numEntries(); i++){
+	for(unsigned int i=0; i< tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
 		out << tr->getCount(s) << ": " << s << std::endl;
+		tr->increaseCount(wordlist[2], 1);
 	}
-
 	out.close();
 	end = getTimeInMillis();
 	std::cout << "getNth followed by getCount, time: " << (end - start) / tr->numEntries() << " ms per entry" << std::endl;
@@ -94,16 +95,6 @@ double useCase_badCaseForNaive(){
 
 	return end - start;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -117,6 +108,6 @@ int main(){
 	 * in the starter files */
 	
 	useCase_addAllThenGetInOrder();
-
+	//useCase_SmarterTrends();
 	return 0;
 }
